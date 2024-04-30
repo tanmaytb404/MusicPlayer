@@ -1,0 +1,264 @@
+body, .navbar{
+    background-color: white;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #222;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border: 0.8px solid #00B4CC;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .slider {
+    background-color: white;
+  }
+
+  input:checked + .slider::before {
+    background-color: black;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #00B4CC;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .container{
+    width: 1024px;
+  }
+
+.container-play{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2%;
+}
+
+.left-section, .center-section, .right-section{
+  padding-top: 2%;
+  width: 30%;
+  border-radius: 20px;
+  box-shadow: #00becc47 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.left-section, .center-section{
+  display: block;
+}
+
+.left-section .top, p{
+  color: #00B4CC;
+display: inline;
+  margin: 5%;
+}
+
+#genre{
+  color: #00B4CC;
+  background-color: inherit;
+  font-size: inherit;
+  font-family: ubuntu;
+  border-radius: 10px;
+  border: 1px solid #00B4CC;
+}
+
+.left-section .bottom, h3{
+display: block;
+text-align: left;
+margin: 5%;
+color: #00B4CC;
+}
+
+.songList{
+  text-align: left;
+  margin-left: -25px;
+  font-family: ubuntu;
+  cursor: pointer;
+  color: #00B4CC;
+}
+
+.center-section .song-card{
+  height: auto;
+  width: 95%;
+  margin: 2.5%;
+  border: 1px solid #00B4CC;
+  border-radius: 10px;
+}
+.center-section .song-card img{
+  height: auto;
+  width: 95%;
+  margin: 2.5%;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.song-control{
+  display: block;
+}
+
+.player audio{
+width: 90%;
+margin: 5%;
+}
+
+.controler{
+  width: 90%;
+  margin: 2%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.controler button{
+  color: #00B4CC;
+  font-family: ubuntu;
+}
+
+.right-section{
+  display: block;
+}
+
+.right-section .top, p{
+  color: #00B4CC;
+display: inline;
+}
+
+.right-section .top{
+  display: flex;
+}
+
+#playlist{
+  color: #00B4CC;
+  background-color: inherit;
+  font-size: inherit;
+  font-family: ubuntu;
+  border: none;
+  outline: none; 
+}
+
+
+.right-section span{
+  margin-top: 5%;
+  margin-left: 3%;
+}
+
+#createPlaylist{
+  border: 1px solid #00B4CC;
+  height: 35%;
+  border-radius: 10px;
+  text-align: center;
+  font-family: ubuntu;
+}
+.playlistBtn {
+  background-image: linear-gradient(#00B4CC, #00B4CC);
+  border: 1px solid #2A8387;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 1px;
+  color: #FFFFFF;
+  cursor: pointer;
+  margin: 0;
+  outline: 0;
+  padding: 5px;
+margin-top: 2px;
+  text-align: center;
+  font-family: ubuntu;
+  transition: box-shadow .05s ease-in-out,opacity .05s ease-in-out;
+  font-size: 10px;
+  margin-left: 15%;
+}
+
+.playlistBtn:hover {
+  box-shadow: rgba(255, 255, 255, 0.3) 0 0 2px inset, rgba(0, 0, 0, 0.4) 0 1px 2px;
+  text-decoration: none;
+  transition-duration: .15s, .15s;
+}
+
+.songListRight li{
+  display: flex;
+  justify-content: space-between;
+  margin-left: -25px;
+  margin-bottom: 2px;
+  font-size: 1.1em;
+  align-items: center;
+  color: antiquewhite;
+}
+
+
+.removeBtn {
+  background: #e62143;
+  border: 1px solid #2A8387;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 1px;
+  color: #FFFFFF;
+  cursor: pointer;
+  margin: 0;
+  outline: 0;
+  padding: 5px;
+  margin-right: 15px;
+  text-align: center;
+  font-family: ubuntu;
+  transition: box-shadow .05s ease-in-out,opacity .05s ease-in-out;
+  font-size: 0.8em
+}
+
+.removeBtn:active,
+.removeBtn:focus {
+  border-bottom-style: none;
+  border-color: #dadada;
+  box-shadow: rgba(0, 0, 0, .3) 0 3px 3px inset;
+  outline: 0;
+}
+
+.removeBtn:hover {
+  border-bottom-style: none;
+  border-color: #dadada;
+}
+
+.right-section .bottom{
+  display: inline;
+}
+
+.bottom li{
+  font-family: ubuntu;
+  color: #00B4CC;
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Player</title>
+    <script
+      src="https://kit.fontawesome.com/a1d961dc77.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/play.css" />
+  </head>
+  <body>
+    <nav class="navbar" id="navbar">
+      <div class="navbar-container container">
+        <!-- logo section:SVG image collapse div for better view-->
+        <div class="logo">
+          <img src="static/music.png" alt="logo" />
+        </div>
+
+        <!-- menu section  -->
+        <ul class="menu-items">
+          <!-- search bar -->
+          <div class="search">
+            <input
+              type="text"
+              class="searchTerm"
+              placeholder="What are you looking for?"
+            />
+            <button type="submit" class="searchButton">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+          <!-- navbar icons -->
+          <li>
+            <a href="#"><i class="fa-solid fa-heart"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-bell"></i></a>
+          </li>
+          <li>
+            <label class="switch" id="switch">
+              <input type="checkbox" />
+              <span class="slider round"></span>
+            </label>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container container-play">
+      <div class="left-section">
+        <div class="top">
+          <p>Filter By Genre:</p>
+          <select name="genre" id="genre">
+            <option value="All songs">All songs</option>
+          </select>
+        </div>
+        <div class="bottom" id="bottom">
+          <h3 id="songGenre">All Songs</h3>
+          <ul class="songList" id="songList"></ul>
+        </div>
+      </div>
+      <div class="center-section">
+        <div class="song-card" id="song-card"></div>
+        <div class="song-control" id="song-control">
+          <div class="player" id="player"></div>
+          <div class="controler">
+            <button class="prev" id="prev">
+              <i class="fas fa-step-backward"></i>
+            </button>
+            <button id="addtolist">Add to playlist</button>
+            <button class="next" id="next">
+              <i class="fas fa-step-forward"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="right-section">
+        <div class="top">
+          <p>Select Playlist:</p>
+          <select name="playlist" id="playlist">
+            <option value="0">Liked Songs</option>
+          </select>
+
+          <span class="createPlaylist">
+            <input
+              type="text"
+              placeholder="Enter Playlist Name"
+              id="createPlaylist"
+            />
+            <button
+              class="playlistBtn"
+              role="button"
+              value="Create Playlist"
+              id="newplaylist"
+            >
+              Create Playlist
+            </button>
+          </span>
+        </div>
+        <div class="bottom" id="bottom">
+          <h3 id="playlistType">Liked Songs</h3>
+          <ul class="songListRight" id="songListRight"></ul>
+          <ul class="displayLibs" id="displayLibs"></ul>
+        </div>
+      </div>
+    </div>
+    <script src="script/play.js"></script>
+  </body>
+</html>
