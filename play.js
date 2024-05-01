@@ -6,6 +6,7 @@ const songCard = document.getElementById("song-card");
 const player = document.getElementById("player");
 let playlistCount = 0;
 
+/* -----------------------------------toggleTheme-------------------------------------------------------- */
 toggleSwitch.addEventListener("click", () => {
     if (toggleSwitch.children[0].checked == false) {
         toggleSwitch.children[0].checked = true;
@@ -18,14 +19,8 @@ toggleSwitch.addEventListener("click", () => {
         navbar.style.backgroundColor = "white";
     }
 })
+/* ---------------------------------------------------------------------------------------------------------------- */
 
-
-
-/* ------------------------------------------------------------------------------------------- */
-/* array to store all the songs,
-obj: id, name artist img genre and source aas properties.
-
-pop, rock, and hip hop */
 
 let songArr = [{
     id: 1,
@@ -50,16 +45,17 @@ let songArr = [{
     source: "static/dido.mp3"
 }];
 
-console.log(songArr);
-/* need to change below code can create a different array to list the genre only */
+
+/* -----------To append genre in the dropdown------------ */
 songArr.forEach(song => {
     const option = document.createElement("option");
     option.textContent = song.genre;
     option.value = song.genre;
     genre.appendChild(option)
 })
+/* -------------------------------------------------------------------------- */
 
-
+/* ------To show the songs based on genre selected------- */
 function showSongs(genreType) {
     const songGenre = document.getElementById("songGenre");
     songGenre.textContent = genreType;
@@ -80,12 +76,11 @@ function showSongs(genreType) {
 genre.addEventListener("change", () => {
     showSongs(genre.value);
 })
-
 genre.dispatchEvent(new Event('change'));
-// showSongs();
+/* --------------------------------------------------------------------------------- */
 
+/* --------------------playSong Card--------------------------------------- */
 let currentSong = 0;
-
 function playSongs(song) {
     console.log(song.name)
     player.innerHTML = ``;
@@ -106,8 +101,9 @@ function playSongs(song) {
 
 }
 playSongs(songArr[0]);
+/* -------------------------------------------------------------------------------------- */
 
-
+/* ----------------------------NEXTBTN------------------------------------------- */
 next.addEventListener("click", () => {
     if (currentSong == songArr.length - 1) {
         next.disable = true;
@@ -116,7 +112,9 @@ next.addEventListener("click", () => {
         playSongs(songArr[currentSong + 1]);
     }
 });
+/* ----------------------------------------------------------------------------------- */
 
+/* ----------------------------PREVBTN------------------------------------------- */
 prev.addEventListener("click", () => {
     if (currentSong == 0) {
         prev.disable = true;
@@ -125,11 +123,12 @@ prev.addEventListener("click", () => {
         playSongs(songArr[currentSong - 1]);
     }
 });
+/* ----------------------------------------------------------------------------------- */
 
+/* -------------------------CREATE NEW PLAYLIST----------------------- */
 let collections = [{
     playlistName: []
 }]
-
 const newplaylist = document.getElementById("newplaylist");
 const createPlaylist = document.getElementById("createPlaylist");
 const playlist = document.getElementById("playlist");
@@ -141,7 +140,8 @@ newplaylist.addEventListener("click", () => {
     createPlaylist.value = ``;
     const option = document.createElement("option");
     option.textContent = playlistName;
-    option.value = playlistCount + 1;
+    playlistCount++;
+    option.value = playlistCount;
     playlist.appendChild(option);
     let newCollection = {
         playlistName: []
@@ -149,14 +149,15 @@ newplaylist.addEventListener("click", () => {
     collections.push(newCollection)
     console.log(collections)
 });
+/* ---------------------------------------------------------------------------------------- */
 
+/* -----------------------ADD TO PLAYLIST------------------------------------- */
 const addtolist = document.getElementById("addtolist");
 const songListRight = document.getElementById("songListRight");
-
 addtolist.addEventListener("click", () => {
     const li = document.createElement("li");
     li.textContent = `${songArr[currentSong].name} - ${songArr[currentSong].artist}`;
-
+    li.id = songArr[currentSong].id;
     const removeBtn = document.createElement("button");
     removeBtn.textContent = "Remove";
     removeBtn.classList.add("removeBtn");
@@ -167,9 +168,7 @@ addtolist.addEventListener("click", () => {
             li.remove();
         }
     });
-
     li.appendChild(removeBtn);
-
     let duplicate = false;
     collections[playlist.value].playlistName.forEach(existingLi => {
         if (existingLi.textContent === li.textContent) {
@@ -177,26 +176,72 @@ addtolist.addEventListener("click", () => {
             return;
         }
     });
-
     if (!duplicate) {
         collections[playlist.value].playlistName.push(li);
     }
-
     displayPlaylistSongs();
 });
+/* -------------------------------------------------------------------------------------------- */
 
+/* ---------------PLAYLIST SONGS based on current playlist------------- */
 function displayPlaylistSongs() {
     const playlistType = document.getElementById("playlistType");
+    console.log(playlist.value);
     playlistType.textContent = playlist[playlist.value].textContent;
     songListRight.innerHTML = ``;
     collections[playlist.value].playlistName.forEach(li => {
+        li.addEventListener("click", () => {
+            playSongs(songArr[li.id - 1])
+        })
         songListRight.append(li);
     });
     console.log(playlistType.innerHTML)
-
 }
+/* ---------------------------------------------------------------------------------------------- */
 
+/* ----------------------SEARCHBAR SONG//PLAYLIST -------------------------*/
+const searchInput = document.querySelector("[data-search]");
+const searchResult = document.getElementById("searchResults");
+searchInput.addEventListener("input", (e) => {
+    searchResult.innerHTML = ``;
+    songArr.forEach(song => {
+        let songName = song.name.toLowerCase();
+        let keyPressed = e.target.value.toLowerCase();
+        if (songName.includes(keyPressed)) {
+            console.log(songName)
+            const li = document.createElement("li");
+            li.textContent = `Song / ${song.name} - ${song.artist}`;
+            li.addEventListener("click", () => {
+                playSongs(song);
+                searchResult.innerHTML = ``;
+            })
+            searchResult.appendChild(li)
+        }
+    })
+    for (let i = 1; i < playlist.length; i++) {
+        let playlistName = playlist[i].textContent.toLowerCase();
+        let keyPressed = e.target.value.toLowerCase();
+        if (playlistName.includes(keyPressed)) {
+            const li = document.createElement("li");
+            li.textContent = `Playlist / ${playlist[i].textContent}`;
+            // li.id = i;
+            li.addEventListener("click", () => {
+                playlist.value = i;
+                displayPlaylistSongs();
+            })
+            searchResult.appendChild(li);
+        }
+    }
+    if (e.target.value == ``) {
+        searchResult.innerHTML = ``;
+    }
+})
+/* ----------------------------------------------------------------------------------------------------- */
 
-console.log(collections)
+/* -----------------TO HIDE SEARCH LIST ON OUTSIDE CLICK-------------------- */
+document.body.addEventListener("click", () => {
+    searchResult.innerHTML = ``;
+})
+/* --------------------------------------------------------------------------------------------------- */
 
 

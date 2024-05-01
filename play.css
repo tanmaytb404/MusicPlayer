@@ -221,6 +221,7 @@ margin-top: 2px;
   font-size: 1.1em;
   align-items: center;
   color: antiquewhite;
+  cursor: pointer;
 }
 
 
@@ -262,3 +263,17 @@ margin-top: 2px;
   font-family: ubuntu;
   color: #00B4CC;
 }
+
+.searchResult{
+  position: absolute;
+  left:51%;
+  /* top:0; */
+  margin-top: -10px;
+  /* background-color: #222; */
+  color:darkolivegreen;
+  font-family: ubuntu;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+

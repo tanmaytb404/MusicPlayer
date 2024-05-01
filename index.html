@@ -28,6 +28,7 @@
               type="text"
               class="searchTerm"
               placeholder="What are you looking for?"
+              data-search
             />
             <button type="submit" class="searchButton">
               <i class="fa fa-search"></i>
@@ -47,6 +48,9 @@
             </label>
           </li>
         </ul>
+      </div>
+      <div class="searchResult" id="searchResults">
+        <!-- <ul class="searchList"></ul> -->
       </div>
     </nav>
     <div class="container container-play">
@@ -103,7 +107,6 @@
         <div class="bottom" id="bottom">
           <h3 id="playlistType">Liked Songs</h3>
           <ul class="songListRight" id="songListRight"></ul>
-          <ul class="displayLibs" id="displayLibs"></ul>
         </div>
       </div>
     </div>
